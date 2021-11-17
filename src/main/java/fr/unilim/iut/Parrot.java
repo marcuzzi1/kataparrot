@@ -1,10 +1,10 @@
 package fr.unilim.iut;
 
 public class Parrot {
-    private ParrotTypeEnum type;
-    private int numberOfCoconuts = 0;
-    private double voltage;
-    private boolean isNailed;
+    protected ParrotTypeEnum type;
+    protected int numberOfCoconuts = 0;
+    protected double voltage;
+    protected boolean isNailed;
 
     public Parrot(ParrotTypeEnum _type, int numberOfCoconuts, double voltage, boolean isNailed) {
         this.type = _type;
@@ -16,7 +16,7 @@ public class Parrot {
     public double getSpeed() {
         switch (type) {
             case EUROPEAN:
-                return getBaseSpeed();
+                throw new RuntimeException("Should be unreachable");
             case AFRICAN:
                 return Math.max(0, getBaseSpeed() - getLoadFactor() * numberOfCoconuts);
             case NORWEGIAN_BLUE:
@@ -25,7 +25,7 @@ public class Parrot {
         throw new RuntimeException("Should be unreachable");
     }
 
-    private double getBaseSpeed(double voltage) {
+    protected double getBaseSpeed(double voltage) {
         return Math.min(24.0, voltage * getBaseSpeed());
     }
 
@@ -33,7 +33,7 @@ public class Parrot {
         return 9.0;
     }
 
-    private double getBaseSpeed() {
+    protected double getBaseSpeed() {
         return 12.0;
     }
 }
